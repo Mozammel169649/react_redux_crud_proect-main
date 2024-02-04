@@ -6,8 +6,7 @@ function Update() {
     <div>
       <h3 className='text-center mt-2'>User Update</h3>
       <div className='col-md-4 mt-2 mx-auto'>
-        <Form >
-          
+        <Form >          
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>User Name</Form.Label>
               <Form.Control type="text" placeholder="Enter UserName" />
