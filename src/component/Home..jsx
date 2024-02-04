@@ -1,8 +1,12 @@
 import React from 'react'
 import { Button, Table } from 'react-bootstrap'
+import { useSelector } from 'react-redux';
 
 
 function Home() {
+  const user = useSelector((state) => state.userReducer.user);
+
+  
   return (
     <div>
       <div>
@@ -18,14 +22,16 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td className='d-flex align-item-center justify-content-center gap-2'>
-                <Button variant="warning">Update</Button>
-                <Button variant="danger">Delete</Button>
-              </td>
-            </tr>
+            {user.map((e) => {
+              return <tr>
+                <td>{e.title}</td>
+                <td>{e.email}</td>
+                <td className='d-flex align-item-center justify-content-center gap-2'>
+                  <Button variant="warning">Update</Button>
+                  <Button variant="danger">Delete</Button>
+                </td>
+              </tr>
+            })}
           </tbody>
         </Table>
       </div>
