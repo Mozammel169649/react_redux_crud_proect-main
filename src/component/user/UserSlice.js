@@ -14,11 +14,20 @@ const UserSlice = createSlice({
     reducers :{
         showUser :(state)=> state,
         addUser : (state, action) =>{
-            console.log(action.payload , state.user);
-            // state.user.push(action.payload),
-        } 
+            state.user.push(action.payload);
+
+        },
+        deleteUser : (state, action) =>{
+            const email = action.payload;
+           state.user = state.user.filter(user => user.email !== email);
+
+        },
+        updateUserDate : (state, action) =>{
+            // const {email ,title} = action.payload;
+            console.log(action.payload);
+        },
     }
 })
 
-export const {showUser ,addUser} = UserSlice.actions ;
+export const {showUser ,addUser, deleteUser, updateUserDate} = UserSlice.actions ;
 export default UserSlice ;
