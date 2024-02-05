@@ -1,12 +1,18 @@
 import React from 'react'
 import { Button, Table } from 'react-bootstrap'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteUser } from './user/UserSlice';
+import { Link } from 'react-router-dom';
 
 
 function Home() {
   const user = useSelector((state) => state.userReducer.user);
+  const dispatch = useDispatch();
+  const deleteUserusemail =(e) => {
+    // console.log(e);
+     dispatch(deleteUser(e));
+  };
 
-  
   return (
     <div>
       <div>
@@ -22,13 +28,14 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            {user.map((e) => {
+            {user.map((element) => {
+              const {title,email} = element;
               return <tr>
-                <td>{e.title}</td>
-                <td>{e.email}</td>
+                <td>{title}</td>
+                <td>{email}</td>
                 <td className='d-flex align-item-center justify-content-center gap-2'>
-                  <Button variant="warning">Update</Button>
-                  <Button variant="danger">Delete</Button>
+                  <Link to="/edit" state={{title,email}} > <Button variant="warning">Update</Button></Link>
+                  < Button variant="danger" onClick={()=>{deleteUserusemail(email)}} >Delete</Button>
                 </td>
               </tr>
             })}
